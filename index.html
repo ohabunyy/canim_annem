@@ -264,16 +264,26 @@
         function checkPassword() {
             const pass = document.getElementById('passwordInput').value;
             if (pass === '1983') {
+                
+                // --- TELEFON GÜVENLİK KİLİDİNİ KIRMA KISMI ---
+                // Butona tıklandığı AN müziği başlatmak zorundayız, bekletirsek telefon engeller.
+                entryMusic.currentTime = 70;
+                entryMusic.volume = 0.5;
+                entryMusic.play().catch(e => console.log("İlk müzik engellendi:", e));
+
+                // İkinci müziğin kilidini açmak için "sessizce çaldırıp hemen duraklatma" taktiği
+                uncleMusic.volume = 0;
+                uncleMusic.play().then(() => {
+                    uncleMusic.pause();
+                    uncleMusic.currentTime = 65; // Şarkının başlayacağı yere sar
+                }).catch(e => console.log("İkinci müzik engellendi:", e));
+                // ---------------------------------------------
+
                 document.getElementById('login-screen').style.opacity = '0';
+                
                 setTimeout(() => {
                     document.getElementById('login-screen').style.display = 'none';
                     document.getElementById('main-content').style.display = 'flex';
-                    
-                    // Ferdi Tayfur müziğini başlat
-                    entryMusic.currentTime = 70; 
-                    entryMusic.volume = 0.5;
-                    entryMusic.play();
-
                     initScrollAnimations();
                     window.scrollTo(0,0);
                 }, 800);
@@ -307,8 +317,7 @@
                                     clearInterval(fadeOut);
                                     entryMusic.pause();
                                     
-                                    // Dayı müziğini başlat
-                                    uncleMusic.currentTime = 65; 
+                                    // Hasan dayı bölümüne inince sesi aç ve devam ettir
                                     uncleMusic.volume = 0.7;
                                     uncleMusic.play();
                                 }
