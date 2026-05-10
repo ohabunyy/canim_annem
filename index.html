@@ -5,102 +5,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canım Annem - 1983</title>
     <style>
-        /* Genel Stil Ayarları */
-        body, html {
-            margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ffe6eb; overflow-x: hidden; scroll-behavior: smooth;
+        /* --- Genel Stil Ayarları --- */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #ffe6eb; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
         }
 
         /* --- ŞİFRE GİRİŞ EKRANI --- */
-        #login-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: #ffb6c1; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; z-index: 1000; overflow: hidden;
+        #login-screen { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100vh; 
+            background-color: #ffb6c1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 1000; 
+            overflow: hidden; 
         }
 
-        .login-box {
-            background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 30px;
-            text-align: center; box-shadow: 0 15px 35px rgba(216, 27, 96, 0.2);
-            z-index: 10; border: 2px solid #ff80ab; max-width: 90%;
+        .login-box { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 40px; 
+            border-radius: 30px; 
+            text-align: center; 
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.2); 
+            z-index: 10; 
+            border: 2px solid #ff80ab; 
+            max-width: 90%; 
         }
 
-        .login-box h2 { color: #d81b60; margin-bottom: 10px; font-size: 28px; }
-        .login-box input {
-            padding: 15px; font-size: 20px; border: 2px solid #ff80ab;
-            border-radius: 15px; text-align: center; width: 80%;
-            margin-bottom: 20px; outline: none; color: #d81b60; letter-spacing: 2px;
+        .login-box h2 { 
+            color: #d81b60; 
+            margin-bottom: 10px; 
+            font-size: 28px; 
         }
 
-        .login-box button {
-            background-color: #d81b60; color: white; border: none;
-            padding: 15px 40px; font-size: 18px; border-radius: 50px;
-            cursor: pointer; transition: 0.3s; font-weight: bold; letter-spacing: 1px;
+        .login-box input { 
+            padding: 15px; 
+            font-size: 20px; 
+            border: 2px solid #ff80ab; 
+            border-radius: 15px; 
+            text-align: center; 
+            width: 80%; 
+            margin-bottom: 20px; 
+            outline: none; 
+            color: #d81b60; 
+            letter-spacing: 2px; 
         }
 
-        .login-box button:hover { background-color: #ad1457; transform: scale(1.05); }
-
-        /* Uçuşan Kalpler Animasyonu */
-        .heart {
-            position: absolute; color: #e91e63; bottom: -50px;
-            animation: floatUp linear infinite; z-index: 1; opacity: 0.8;
-            user-select: none; pointer-events: none;
+        .login-box button { 
+            background-color: #d81b60; 
+            color: white; 
+            border: none; 
+            padding: 15px 40px; 
+            font-size: 18px; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
         }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-110vh) scale(1.5) rotate(360deg); opacity: 0; }
+
+        .login-box button:hover { 
+            background-color: #ad1457; 
+            transform: scale(1.05); 
+        }
+
+        /* --- Uçuşan Kalpler Animasyonu --- */
+        .heart { 
+            position: absolute; 
+            color: #e91e63; 
+            bottom: -50px; 
+            animation: floatUp linear infinite; 
+            z-index: 1; 
+            opacity: 0.8; 
+            user-select: none; 
+            pointer-events: none; 
+        }
+
+        @keyframes floatUp { 
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; } 
+            100% { transform: translateY(-110vh) scale(1.5) rotate(360deg); opacity: 0; } 
         }
 
         /* --- ANA İÇERİK --- */
-        #main-content { display: none; flex-direction: column; align-items: center; }
-
-        .section {
-            width: 90%; max-width: 800px; min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding: 80px 0;
-            opacity: 0; transform: translateY(60px); transition: all 1.5s ease;
+        #main-content { 
+            display: none; 
+            flex-direction: column; 
+            align-items: center; 
         }
 
-        .section.visible { opacity: 1; transform: translateY(0); }
-
-        .section img {
-            width: 100%; max-width: 550px; border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3); margin: 30px 0; border: 8px solid white;
+        .section { 
+            width: 90%; 
+            max-width: 800px; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            padding: 80px 0; 
+            opacity: 0; 
+            transform: translateY(60px); 
+            transition: all 1.5s ease; 
         }
 
-        .message {
-            font-size: 20px; color: #444; background: white;
-            padding: 35px; border-radius: 20px; line-height: 1.8;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 6px solid #d81b60;
-            text-align: justify; text-align-last: center;
+        .section.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
         }
 
-        .title {
-            font-size: 40px; color: #d81b60; margin-bottom: 20px;
-            font-family: 'Georgia', serif; font-weight: bold; line-height: 1.3;
+        .section img { 
+            width: 100%; 
+            max-width: 550px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
+            margin: 30px 0; 
+            border: 8px solid white; 
         }
 
-        .time-capsule {
-            background-color: #d81b60; color: white; padding: 45px;
-            border-radius: 20px; margin: 50px 0; box-shadow: 0 15px 30px rgba(216, 27, 96, 0.4); 
-            width: 100%; box-sizing: border-box; line-height: 1.8; font-size: 19px;
+        .message { 
+            font-size: 20px; 
+            color: #444; 
+            background: white; 
+            padding: 35px; 
+            border-radius: 20px; 
+            line-height: 1.8; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            border-left: 6px solid #d81b60; 
+            text-align: justify; 
+            text-align-last: center; 
         }
 
-        footer { padding: 40px; color: #888; font-size: 15px; font-style: italic; }
+        .title { 
+            font-size: 40px; 
+            color: #d81b60; 
+            margin-bottom: 20px; 
+            font-family: 'Georgia', serif; 
+            font-weight: bold; 
+            line-height: 1.3; 
+        }
+
+        /* --- Zaman Kapsülü --- */
+        .time-capsule { 
+            background-color: #d81b60; 
+            color: white; 
+            padding: 45px; 
+            border-radius: 20px; 
+            margin: 50px 0; 
+            box-shadow: 0 15px 30px rgba(216, 27, 96, 0.4); 
+            width: 100%; 
+            box-sizing: border-box; 
+            line-height: 1.8; 
+            font-size: 19px; 
+        }
+
+        footer { 
+            padding: 40px; 
+            color: #888; 
+            font-size: 15px; 
+            font-style: italic; 
+        }
     </style>
 </head>
 <body>
 
-    <audio id="entryMusic" src="giris_muzigi.mp4" loop></audio>
-    <audio id="uncleMusic" src="dayi_muzigi.mp4"></audio>
+    <audio id="entryMusic" src="giris_muzigi.mp3" loop></audio>
+    <audio id="uncleMusic" src="dayi_muzigi.mp3"></audio>
 
     <div id="login-screen">
         <div class="login-box">
             <h2>🌸 Hoş Geldin Melek Annem 🌸</h2>
-            <p style="color: #666; font-size: 15px; margin-bottom: 20px; line-height: 1.5;">Bu kapının ardında sadece sana özel bir dünya var.<br>Kilidi açmak için o özel yılı girer misin?</p>
+            <p style="color: #666; font-size: 15px; margin-bottom: 20px; line-height: 1.5;">
+                Bu kapının ardında sadece sana özel bir dünya var.<br>Kilidi açmak için o özel yılı girer misin?
+            </p>
             <input type="password" id="passwordInput" placeholder="Şifreyi buraya yaz">
             <br>
             <button onclick="checkPassword()">Kapıyı Aç</button>
-            <p id="error-msg" style="color: #d32f2f; display: none; margin-top: 15px; font-weight: bold;">Şifreyi sanki yanlış yazdın kraliçem, tekrar dener misin?</p>
+            <p id="error-msg" style="color: #d32f2f; display: none; margin-top: 15px; font-weight: bold;">
+                Şifreyi sanki yanlış yazdın kraliçem, tekrar dener misin?
+            </p>
         </div>
     </div>
 
@@ -112,7 +204,9 @@
             <p class="message">
                 Canım annem... Bugüne kadar kahrımı çeken, her düştüğümde elimden tutup beni ayağa kaldıran, uykusuz gecelerimde bile şefkatini eksik etmeyen en büyük kahramanımsın. Hayatın getirdiği tüm zorluklar karşısında dimdik duruşunla bana her zaman en büyük ilham kaynağı oldun. Arkama her baktığımda gördüğüm o dağ gibi gölgen bana dünyaları fethedecek gücü veriyor. Senin sevginle büyümek, senin evladın olmak bu hayatta boynuma taktığım en gurur verici madalyam. İyi ki varsın, iyi ki benim annemsin... Seni kelimelerin anlatabileceğinden çok daha fazla seviyorum.
             </p>
-            <p style="color: #d81b60; font-weight: bold; margin-top: 20px; font-size: 18px; animation: pulse 2s infinite;">Aşağı kaydırır mısın? ✨</p>
+            <p style="color: #d81b60; font-weight: bold; margin-top: 20px; font-size: 18px; animation: pulse 2s infinite;">
+                Aşağı kaydırır mısın? ✨
+            </p>
         </div>
 
         <div class="section">
@@ -133,9 +227,15 @@
         <div class="section">
             <div class="time-capsule">
                 <h3 style="font-size: 26px; margin-top: 0;">💌 Senin İçin Bir Zaman Kapsülü</h3>
-                <p>Bu küçük site, sana olan sonsuz sevgimizin dijital bir yansıması sadece. Hayatın koşturmacası içinde ne zaman kendini yalnız hissedersen, ne zaman bir desteğe veya bir gülümsemeye ihtiyaç duyarsan, sadece <b>1983</b> şifresini yaz ve buraya gel.</p>
-                <p>Bil ki burada seni dünyalar kadar seven, senin için her şeyi yapmaya hazır olan evlatların var. Gözyaşların sadece mutluluktan aksın. Anneler günün kutlu olsun canım annem, seni çok ama çok seviyoruz...</p>
-                <p style="font-style: italic; margin-top: 30px; font-size: 22px; font-weight: bold; text-align: right;">- Evlatların</p>
+                <p>
+                    Bu küçük site, sana olan sonsuz sevgimizin dijital bir yansıması sadece. Hayatın koşturmacası içinde ne zaman kendini yalnız hissedersen, ne zaman bir desteğe veya bir gülümsemeye ihtiyaç duyarsan, sadece <b>1983</b> şifresini yaz ve buraya gel.
+                </p>
+                <p>
+                    Bil ki burada seni dünyalar kadar seven, senin için her şeyi yapmaya hazır olan evlatların var. Gözyaşların sadece mutluluktan aksın. Anneler günün kutlu olsun canım annem, seni çok ama çok seviyoruz...
+                </p>
+                <p style="font-style: italic; margin-top: 30px; font-size: 22px; font-weight: bold; text-align: right;">
+                    - Evlatların
+                </p>
             </div>
             <footer>© 2026 - Seni Çok Seven Evladın Tarafından Kodlandı</footer>
         </div>
@@ -169,7 +269,7 @@
                     document.getElementById('login-screen').style.display = 'none';
                     document.getElementById('main-content').style.display = 'flex';
                     
-                    // Ferdi Tayfur - Acılar (En damar yerine göre saniyeyi buradan ayarlayabilirsin)
+                    // Ferdi Tayfur müziğini başlat
                     entryMusic.currentTime = 70; 
                     entryMusic.volume = 0.5;
                     entryMusic.play();
@@ -180,7 +280,6 @@
             } else {
                 const errorMsg = document.getElementById('error-msg');
                 errorMsg.style.display = 'block';
-                // Yanlış şifrede ufak bir sallantı efekti
                 const loginBox = document.querySelector('.login-box');
                 loginBox.style.transform = 'translateX(-10px)';
                 setTimeout(() => loginBox.style.transform = 'translateX(10px)', 100);
@@ -199,7 +298,6 @@
                         entry.target.classList.add('visible');
                         
                         if (entry.target.id === 'last-section' && !uncleMusicStarted) {
-                            // Sesi yavaşça kısarak durdur
                             let vol = entryMusic.volume;
                             let fadeOut = setInterval(() => {
                                 if (vol > 0.05) {
@@ -209,7 +307,7 @@
                                     clearInterval(fadeOut);
                                     entryMusic.pause();
                                     
-                                    // Kırda Çiçekler Açmıyor (Şarkının giriş saniyesi)
+                                    // Dayı müziğini başlat
                                     uncleMusic.currentTime = 65; 
                                     uncleMusic.volume = 0.7;
                                     uncleMusic.play();
